@@ -21,7 +21,7 @@ summary: Kısa özet.
 
 İçerik markdown olarak...
 ```
-Kaydet, site otomatik güncellenir. Kod bilmene gerek yok.
+
 
 ## Yapı
 - `src/pages/build-log/index.astro` — yazı listesi
@@ -30,12 +30,3 @@ Kaydet, site otomatik güncellenir. Kod bilmene gerek yok.
 - `src/layouts/Base.astro` — ortak kabuk (nav + footer + tema)
 - `src/styles/global.css` — Phalanx paleti
 
-## Yayınlama (GitHub Pages)
-1. Repoyu GitHub'a push et.
-2. `.github/workflows` altına Astro'nun resmi GitHub Pages action'ını ekle
-   (docs.astro.build → Deploy → GitHub Pages).
-3. Kendi domainini alınca `astro.config.mjs` içindeki `site` alanını güncelle
-   ve repo ayarlarından custom domain'i bağla.
-
-Not: Ana sayfa (index), Takım ve İletişim bölümleri mockup'tan Astro'ya
-taşınacak — bu iskele şimdilik build-log'a odaklıdır.
