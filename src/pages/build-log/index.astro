@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const posts = (await getCollection('buildlog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const fmt = (d) => d.toLocaleDateString('tr-TR', { year: 'numeric', month: 'long' });
+---
+<Base title="Build-log — Phalanx Racing">
+  <div class="wrap page">
+    <span class="eyebrow">Sahadan</span>
+    <h1>Build-log</h1>
+    <p class="lead">Atölyeden yarış pistine yolculuğumuz. Her adımı burada paylaşıyoruz.</p>
+    <div class="logs">
+      {posts.map((p) => (
+        <a class="log" href={`/build-log/${p.id}/`}>
+          <div class="im"><span>{p.data.tag ?? 'Günlük'}</span></div>
+          <div class="bd">
+            <time>{fmt(p.data.date)}</time>
+            <h3>{p.data.title}</h3>
+            <p>{p.data.summary}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</Base>

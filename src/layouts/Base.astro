@@ -1,0 +1,34 @@
+---
+import '../styles/global.css';
+const { title = 'Phalanx Racing', desc = 'TEKNOFEST 2027 Efficiency Challenge' } = Astro.props;
+const path = Astro.url.pathname;
+---
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={desc} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <nav>
+    <div class="wrap nav-in">
+      <a class="brand" href="/">PHALANX<small>RACING</small></a>
+      <div class="links">
+        <a href="/#road">Yol Haritası</a>
+        <a href="/build-log" class={path.startsWith('/build-log') ? 'active' : ''}>Build-log</a>
+        <a href="/#team">Takım</a>
+        <a href="/#contact">İletişim</a>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <slot />
+  </main>
+  <footer>© 2026 Phalanx Racing · TEKNOFEST 2027 Efficiency Challenge</footer>
+</body>
+</html>
