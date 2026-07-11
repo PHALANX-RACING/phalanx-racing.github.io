@@ -15,8 +15,10 @@ a{color:inherit;text-decoration:none}
 
 .btn{display:inline-block;font-family:'Chakra Petch';font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:13px;padding:12px 24px;border:1px solid var(--gold);color:var(--cream);background:transparent;cursor:pointer;transition:.2s}
 .btn:hover{background:var(--gold);color:#0D1114}
-.btn.solid{background:var(--gold-grad);color:#0D1114;border-color:transparent}
+.btn.solid{background:linear-gradient(105deg,#B37E27 0%,#D8A93E 26%,#F3E29A 44%,#FCF3CE 50%,#F3E29A 56%,#D8A93E 74%,#B37E27 100%);background-size:300% auto;color:#0D1114;border-color:transparent;animation:btnshimmer 6s linear infinite}
 .btn.solid:hover{filter:brightness(1.12)}
+@keyframes btnshimmer{from{background-position:300% center}to{background-position:0% center}}
+@media(prefers-reduced-motion:reduce){.btn.solid{animation:none}}
 
 nav{position:sticky;top:0;z-index:50;background:rgba(13,17,20,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 nav::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(115deg,transparent 40%,rgba(188,131,41,.14) 46%,rgba(232,170,74,.28) 50%,rgba(188,131,41,.14) 54%,transparent 60%);background-size:260% 100%;background-repeat:no-repeat;animation:navsheen 6s ease-in-out infinite}
