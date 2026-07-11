@@ -1,60 +1,20 @@
 ---
 import Base from '../layouts/Base.astro';
-
-const groups = [
-  { name: 'Yönetim', members: [
-    { n: 'Ege Şeker', r: 'Baş Mühendis', d: 'Makine Müh. 4. Sınıf', lead: true },
-    { n: 'Ebru Tokatlı', r: 'Takım Direktörü', d: 'Makine Müh. 2. Sınıf', lead: true },
-    { n: 'Muhammed Yiğit Akgün', r: 'Medya & Tanıtım', d: 'End. Tasarım Müh. 2. Sınıf' },
-  ]},
-  { name: 'Aero-Kompozit', members: [
-    { n: 'Ayberk Şahin', r: 'Kaptan · Lider', d: 'Makine Müh. 2. Sınıf', lead: true },
-    { n: 'Berra Yıldırım', r: 'Üye', d: 'Makine Müh. 3. Sınıf' },
-    { n: 'Arda Ayden', r: 'Üye', d: 'Kimya Müh. 1. Sınıf' },
-  ]},
-  { name: 'Elektronik', members: [
-    { n: 'Burak Furkan Koç', r: 'Lider', d: 'Makine Müh. 2. Sınıf', lead: true },
-    { n: 'Muhammet Mert Yıldız', r: 'Üye', d: 'Yazılım Müh. 2. Sınıf' },
-    { n: 'Hasan Hacıahmetoğlu', r: 'Üye', d: 'Bilgisayar Müh. 2. Sınıf' },
-    { n: 'Mehmet Fuat Mat', r: 'Üye', d: 'Makine Müh. 2. Sınıf' },
-    { n: 'Ebru Tokatlı', r: 'EMC / İzolasyon', d: 'Makine Müh. 2. Sınıf' },
-  ]},
-  { name: 'Şasi-Süspansiyon', members: [
-    { n: 'İsmail Öztürk', r: 'Lider', d: 'End. Tasarım Müh. 3 · Makine Müh. ÇAP', lead: true },
-    { n: 'Rana Şenkardeşler', r: 'Üye', d: 'Makine Müh. 2. Sınıf' },
-    { n: 'Miraç Taha Aynacı', r: 'Üye', d: 'Makine Müh. 2. Sınıf' },
-    { n: 'Kaan Koç', r: 'Üye', d: 'Mekatronik Müh. 3. Sınıf' },
-    { n: 'Yusuf Kalender', r: 'Üye', d: 'Kimya Müh. 2. Sınıf' },
-  ]},
-  { name: 'Powertrain', members: [
-    { n: 'Ebrar Berrak Elmalı', r: 'Lider', d: 'Mekatronik Müh. 1. Sınıf', lead: true },
-    { n: 'Ferhat Karakuş', r: 'Üye', d: 'Mekatronik Müh. 2. Sınıf' },
-    { n: 'Işıl Yaman', r: 'Üye', d: 'Kimya Müh. 2. Sınıf' },
-    { n: 'Murat Adsan', r: 'Üye', d: 'Mekatronik Müh. 3. Sınıf' },
-    { n: 'Mustafa Deniz Abaylamak', r: 'Üye', d: 'Makine Müh. 2. Sınıf' },
-  ]},
-];
-
-const slug = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '')
-  .toLowerCase()
-  .replaceAll('ı', 'i').replaceAll('ç', 'c').replaceAll('ğ', 'g')
-  .replaceAll('ö', 'o').replaceAll('ş', 's').replaceAll('ü', 'u')
-  .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-const initials = (s) => s.split(' ').filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toLocaleUpperCase('tr');
+import { groups, slug, initials } from '../data/team.js';
 ---
 <Base title="Tüm Takım — Phalanx Racing" desc="Phalanx Racing kadrosu: yönetim ve beş alt takım — aerodinamik-kompozit, elektronik, şasi-süspansiyon, powertrain.">
   <div class="wrap page">
     <a class="back" href="/#team">← Ana sayfa</a>
     <span class="eyebrow">Kadro</span>
     <h1>Tüm Takım</h1>
-    <p class="lead">Phalanx Racing'in disiplinler arası kadrosu — beş alt takım, tek düzen.</p>
+    <p class="lead">Phalanx Racing'in disiplinler arası kadrosu — bir isme tıkla, sayfasına git.</p>
 
     {groups.map((g) => (
       <div class="grp">
         <div class="grp-head">{g.name}</div>
         <div class="roster">
           {g.members.map((m) => (
-            <div class={m.lead ? 'pcard lead' : 'pcard'}>
+            <a class={m.lead ? 'pcard lead' : 'pcard'} href={`/takim/${slug(m.n)}`}>
               <div class="avatar">
                 <span class="ini">{initials(m.n)}</span>
                 <img src={`/team/${slug(m.n)}.jpg`} alt={m.n} loading="lazy" onerror="this.style.display='none'" />
@@ -62,7 +22,7 @@ const initials = (s) => s.split(' ').filter(Boolean).slice(0, 2).map((w) => w[0]
               <h3>{m.n}</h3>
               <div class="r">{m.r}</div>
               <div class="d">{m.d}</div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
@@ -73,7 +33,7 @@ const initials = (s) => s.split(' ').filter(Boolean).slice(0, 2).map((w) => w[0]
 .grp{margin-bottom:40px}
 .grp-head{font-family:'Chakra Petch';text-transform:uppercase;letter-spacing:.14em;font-weight:700;font-size:18px;color:var(--cream);border-left:3px solid var(--gold);padding-left:12px;margin-bottom:18px}
 .roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
-.pcard{border:1px solid var(--line);background:rgba(13,17,20,.5);padding:22px 16px;text-align:center;transition:.2s}
+.pcard{border:1px solid var(--line);background:rgba(13,17,20,.5);padding:22px 16px;text-align:center;transition:.2s;display:block;color:inherit;text-decoration:none}
 .pcard:hover{border-color:var(--gold);transform:translateY(-3px)}
 .pcard.lead{border-color:var(--gold);background:rgba(188,131,41,.07)}
 .avatar{width:92px;height:92px;border-radius:50%;margin:0 auto 14px;position:relative;overflow:hidden;background:linear-gradient(135deg,#3a2b18,#7C3E08);display:flex;align-items:center;justify-content:center;border:2px solid var(--line)}

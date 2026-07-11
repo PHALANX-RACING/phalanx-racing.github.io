@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro';
+import { people, teamDesc, initials } from '../../data/team.js';
+
+export function getStaticPaths() {
+  return people().map((p) => ({ params: { slug: p.slug }, props: { person: p } }));
+}
+
+const { person } = Astro.props;
+const primary = person.roles[0];
+const teamsText = person.roles.map((r) => r.team).join(' ve ');
+const bio = `${person.name}, Phalanx Racing bünyesinde ${teamsText} ekibinde görev alıyor. ${person.dept}.`;
+---
+<Base title={`${person.name} — Phalanx Racing`} desc={`${person.name} · ${person.roles.map((r) => `${r.team} ${r.role}`).join(' · ')} — Phalanx Racing`}>
+  <div class="wrap page">
+    <a class="back" href="/takim">← Takım</a>
+
+    <div class="mhero">
+      <div class="mavatar">
+        <span class="ini">{initials(person.name)}</span>
+        <img src={`/team/${person.slug}.jpg`} alt={person.name} onerror="this.style.display='none'" />
+      </div>
+      <div class="minfo">
+        <span class="eyebrow">{primary.team}</span>
+        <h1>{person.name}</h1>
+        <div class="roles">
+          {person.roles.map((r) => (
+            <span class={r.lead ? 'rbadge lead' : 'rbadge'}>{r.team} · {r.role}</span>
+          ))}
+        </div>
+        <div class="dept">{person.dept}</div>
+      </div>
+    </div>
+
+    <p class="bio">{bio}</p>
+
+    <div class="teamboxes">
+      {person.roles.map((r) => (
+        <div class="tbox">
+          <div class="tlbl">{r.team}</div>
+          <p>{teamDesc[r.team]}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+<style>
+.mhero{display:flex;gap:28px;align-items:center;margin:24px 0 28px;flex-wrap:wrap}
+.mavatar{width:140px;height:140px;flex:none;border-radius:50%;position:relative;overflow:hidden;background:linear-gradient(135deg,#3a2b18,#7C3E08);display:flex;align-items:center;justify-content:center;border:3px solid var(--gold)}
+.mavatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mavatar .ini{font-family:'Chakra Petch';font-weight:700;font-size:46px;color:var(--cream)}
+.minfo h1{font-size:clamp(30px,5vw,48px);text-transform:uppercase;font-weight:700;margin:8px 0 12px}
+.roles{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.rbadge{font-family:'Chakra Petch';font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);padding:5px 11px}
+.rbadge.lead{border-color:var(--gold);background:rgba(188,131,41,.1);color:var(--yellow)}
+.dept{color:var(--muted);font-size:14px}
+.bio{font-size:17px;line-height:1.8;color:#EDE9CF;max-width:720px;margin-bottom:28px}
+.teamboxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;max-width:760px}
+.tbox{border:1px solid var(--line);background:rgba(38,26,50,.35);padding:18px}
+.tlbl{font-family:'Chakra Petch';text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:var(--gold);font-size:13px;margin-bottom:6px}
+.tbox p{font-size:14px;color:var(--muted)}
+@media(max-width:560px){.mhero{gap:18px}.mavatar{width:110px;height:110px}}
+</style>
+</Base>
