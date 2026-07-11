@@ -4,12 +4,12 @@ import Base from '../layouts/Base.astro';
 <Base title="Phalanx Racing — TEKNOFEST 2027 Efficiency Challenge">
 
   <header class="hero" id="top">
-    <svg class="claw" viewBox="0 0 400 300" fill="none" aria-hidden="true"><path d="M40 260c40-70 60-140 55-230M110 270c30-70 40-150 30-235M180 275c20-75 22-155 8-238M250 270c10-75 5-155-12-235" stroke="#BC8329" stroke-width="10" stroke-linecap="round"/></svg>
+    <img src="/logo.svg" alt="" aria-hidden="true" class="hero-bg" />
     <div class="wrap hero-in">
       <span class="eyebrow">TEKNOFEST 2027 · Efficiency Challenge</span>
       <h1><span class="gold">PHALANX</span> RACING</h1>
       <p class="sub">Uluslararası Elektrikli Araç Yarışları — Elektromobil</p>
-      <p class="tag">Sıfırdan bir elektrikli verimlilik aracı inşa eden, disiplinler arası bir öğrenci takımı. Atölyeden yarış pistine — her şeyi biz kuruyoruz.</p>
+      <p class="tag">Sıfırdan bir elektrikli verimlilik aracı inşa eden, disiplinler arası bir öğrenci takımı.</p>
       <div class="cta">
         <a href="#road" class="btn solid">Yol Haritası</a>
         <a href="/build-log" class="btn">Build-log</a>
@@ -20,7 +20,7 @@ import Base from '../layouts/Base.astro';
   <div class="stats"><div class="wrap stats-in">
     <div class="stat"><div class="n gold">2027</div><div class="k">Hedef Yarış</div></div>
     <div class="stat"><div class="n gold">5</div><div class="k">Alt Takım</div></div>
-    <div class="stat"><div class="n gold">19</div><div class="k">Üye</div></div>
+    <div class="stat"><div class="n gold">20</div><div class="k">Üye</div></div>
     <div class="stat"><div class="n gold">1.</div><div class="k">Sezon</div></div>
   </div></div>
 
@@ -51,6 +51,7 @@ import Base from '../layouts/Base.astro';
         <div class="mem"><div class="role">Powertrain</div><h3>Ebrar Berrak Elmalı</h3></div>
         <div class="mem"><div class="role">Medya & Tanıtım</div><h3>M. Yiğit Akgün</h3></div>
       </div>
+      <div class="team-cta"><a href="/takim" class="btn">Tüm takımı görüntüle →</a></div>
     </div>
   </section>
 
@@ -82,12 +83,17 @@ import Base from '../layouts/Base.astro';
 
 <style>
 .hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;background:radial-gradient(120% 90% at 80% 10%,rgba(38,26,50,.9),rgba(13,17,20,1) 60%)}
-.hero .claw{position:absolute;right:-6%;top:50%;transform:translateY(-50%);width:60%;max-width:720px;opacity:.14;pointer-events:none}
-.hero-in{position:relative;z-index:2;max-width:720px;padding:60px 0}
+.hero-in{position:relative;z-index:2;max-width:860px;margin:0 auto;padding:60px 22px;text-align:center}
+.hero-bg{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:clamp(300px,82vw,1700px);opacity:.07;pointer-events:none;z-index:0}
+.hero::before{content:"";position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:70vw;height:70vw;max-width:1000px;max-height:1000px;background:radial-gradient(circle,rgba(188,131,41,.14),rgba(188,131,41,0) 60%);z-index:0;pointer-events:none}
+
 .hero h1{font-size:clamp(44px,8vw,92px);line-height:.98;font-weight:700;text-transform:uppercase;margin:14px 0 8px}
+.hero h1 .gold{background:linear-gradient(105deg,#B37E27 0%,#D8A93E 26%,#F3E29A 44%,#FCF3CE 50%,#F3E29A 56%,#D8A93E 74%,#B37E27 100%);background-size:300% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 6s linear infinite}
+@keyframes shimmer{from{background-position:300% center}to{background-position:0% center}}
+@media(prefers-reduced-motion:reduce){.hero h1 .gold{animation:none}}
 .hero .sub{font-family:'Chakra Petch';font-size:clamp(15px,2.2vw,20px);color:var(--cream);letter-spacing:.04em}
-.hero .tag{color:var(--muted);max-width:520px;margin:16px 0 30px;font-size:16px}
-.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero .tag{color:var(--muted);max-width:540px;margin:16px auto 30px;font-size:16px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
 
 .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .stats-in{display:grid;grid-template-columns:repeat(4,1fr)}
@@ -114,6 +120,7 @@ import Base from '../layouts/Base.astro';
 .mem{border:1px solid var(--line);padding:18px;background:rgba(13,17,20,.5)}
 .mem .role{font-family:'Chakra Petch';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
 .mem h3{font-size:17px;margin-top:6px;font-weight:600}
+.team-cta{margin-top:26px}
 
 .tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:26px}
 .tier{border:1px solid var(--line);padding:26px 22px;background:rgba(38,26,50,.35)}

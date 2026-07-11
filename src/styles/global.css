@@ -19,9 +19,14 @@ a{color:inherit;text-decoration:none}
 .btn.solid:hover{filter:brightness(1.12)}
 
 nav{position:sticky;top:0;z-index:50;background:rgba(13,17,20,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
-.brand{font-family:'Chakra Petch';font-weight:700;font-size:20px;letter-spacing:.14em;display:flex;flex-direction:column;line-height:1}
-.brand small{font-size:10px;letter-spacing:.34em;color:var(--gold);margin-top:2px}
+nav::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(115deg,transparent 40%,rgba(188,131,41,.14) 46%,rgba(232,170,74,.28) 50%,rgba(188,131,41,.14) 54%,transparent 60%);background-size:260% 100%;background-repeat:no-repeat;animation:navsheen 6s ease-in-out infinite}
+@keyframes navsheen{0%{background-position:145% 0}55%{background-position:-45% 0}100%{background-position:-45% 0}}
+@media(prefers-reduced-motion:reduce){nav::before{animation:none}}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px;position:relative;z-index:1}
+.brand{display:flex;align-items:center;gap:11px}
+.brand-logo{height:42px;width:auto;display:block}
+.brand-txt{display:flex;flex-direction:column;line-height:1;font-family:'Chakra Petch';font-weight:700;font-size:20px;letter-spacing:.14em}
+.brand-txt small{font-size:10px;letter-spacing:.34em;color:var(--gold);margin-top:2px}
 .links{display:flex;gap:24px;font-family:'Chakra Petch';font-size:14px;text-transform:uppercase;letter-spacing:.08em}
 .links a{color:var(--muted);transition:color .2s}
 .links a:hover,.links a.active{color:var(--yellow)}

@@ -10,6 +10,7 @@ const path = Astro.url.pathname;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={desc} />
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -17,7 +18,7 @@ const path = Astro.url.pathname;
 <body>
   <nav>
     <div class="wrap nav-in">
-      <a class="brand" href="/">PHALANX<small>RACING</small></a>
+      <a class="brand" href="/"><img src="/logo.svg" alt="" class="brand-logo" /><span class="brand-txt">PHALANX<small>RACING</small></span></a>
       <button class="burger" id="burger" aria-label="Menü">&#9776;</button>
       <div class="links" id="links">
         <a href="/#road">Yol Haritası</a>
@@ -29,7 +30,10 @@ const path = Astro.url.pathname;
     </div>
   </nav>
   <main><slot /></main>
-  <footer>© 2026 Phalanx Racing · TEKNOFEST 2027 Efficiency Challenge</footer>
+  <footer>
+    <img src="/logo.svg" alt="Phalanx Racing" style="height:52px;width:auto;margin:0 auto 12px;display:block;opacity:.9" />
+    <div>© 2026 Phalanx Racing · TEKNOFEST 2027 Efficiency Challenge</div>
+  </footer>
   <script>
     const b = document.getElementById('burger');
     const l = document.getElementById('links');
