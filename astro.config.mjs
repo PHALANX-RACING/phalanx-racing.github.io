@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  // Kendi domainini alınca burayı güncelle (ör. https://phalanxracing.com.tr)
   site: 'https://phalanxracing.com.tr',
+  integrations: [sitemap()],
 });

@@ -42,7 +42,7 @@ const slug = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '')
   .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 const initials = (s) => s.split(' ').filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toLocaleUpperCase('tr');
 ---
-<Base title="Tüm Takım — Phalanx Racing">
+<Base title="Tüm Takım — Phalanx Racing" desc="Phalanx Racing kadrosu: yönetim ve beş alt takım — aerodinamik-kompozit, elektronik, şasi-süspansiyon, powertrain.">
   <div class="wrap page">
     <a class="back" href="/#team">← Ana sayfa</a>
     <span class="eyebrow">Kadro</span>
