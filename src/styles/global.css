@@ -41,7 +41,8 @@ nav::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;b
 
 .page{padding:70px 0 90px}
 .page h1{font-size:clamp(34px,6vw,56px);text-transform:uppercase;font-weight:700;margin:10px 0 6px}
-.page .lead{color:var(--muted);max-width:620px;margin-bottom:44px}
+/* Intro paragraph only — scoped to <p> so it can't leak onto cards/badges. */
+.page p.lead{color:var(--muted);max-width:620px;margin-bottom:44px}
 .logs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
 .log{border:1px solid var(--line);background:rgba(38,26,50,.35);overflow:hidden;transition:.2s;display:block}
 .log:hover{border-color:var(--gold);transform:translateY(-3px)}

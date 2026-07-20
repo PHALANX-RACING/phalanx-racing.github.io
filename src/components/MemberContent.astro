@@ -25,7 +25,7 @@ const bio = t.member.bio(person.name, teamsText, deptText);
         <h1>{person.name}</h1>
         <div class="roles">
           {person.roles.map((r) => (
-            <span class={r.lead ? 'rbadge lead' : 'rbadge'}>{groupName(r.team, lang)} · {roleName(r.role, lang)}</span>
+            <span class={r.lead ? 'rbadge is-lead' : 'rbadge'}>{groupName(r.team, lang)} · {roleName(r.role, lang)}</span>
           ))}
         </div>
         <div class="dept">{deptText}</div>
@@ -52,7 +52,7 @@ const bio = t.member.bio(person.name, teamsText, deptText);
 .minfo h1{font-size:clamp(30px,5vw,48px);text-transform:uppercase;font-weight:700;margin:8px 0 12px}
 .roles{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
 .rbadge{font-family:'Chakra Petch';font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);padding:5px 11px}
-.rbadge.lead{border-color:var(--gold);background:rgba(188,131,41,.1);color:var(--yellow)}
+.rbadge.is-lead{border-color:var(--gold);background:rgba(188,131,41,.1);color:var(--yellow)}
 .dept{color:var(--muted);font-size:14px}
 .bio{font-size:17px;line-height:1.8;color:#EDE9CF;max-width:720px;margin-bottom:28px}
 .teamboxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;max-width:760px}
