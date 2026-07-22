@@ -42,15 +42,10 @@ const L = (p) => localizedPath(p, lang);
     </div>
   </section>
 
-  <section class="blk alt" id="team">
+  <section class="blk" id="team">
     <div class="wrap">
       <div class="sec-head"><span class="eyebrow">{h.teamEyebrow}</span><h2>{h.teamHead}</h2></div>
-      <div class="team">
-        {h.featured.map((m) => (
-          <div class="mem"><div class="role">{m.role}</div><h3>{m.name}</h3></div>
-        ))}
-      </div>
-      <div class="team-cta"><a href={L('/takim')} class="btn">{h.teamCta}</a></div>
+      <div class="team-cta"><a href={L('/takim')} class="btn solid big">{h.teamCta}</a></div>
     </div>
   </section>
 
@@ -124,11 +119,8 @@ const L = (p) => localizedPath(p, lang);
 .phase.mile{border-color:var(--yellow);background:rgba(240,237,114,.06)}
 .phase.mile .p{color:var(--yellow)}
 
-.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
-.mem{border:1px solid var(--line);padding:18px;background:rgba(13,17,20,.5)}
-.mem .role{font-family:'Chakra Petch';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
-.mem h3{font-size:17px;margin-top:6px;font-weight:600}
-.team-cta{margin-top:26px}
+.team-cta{margin-top:8px}
+.btn.big{font-size:18px;padding:22px 46px}
 
 .tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:26px}
 .tier{border:1px solid var(--line);padding:26px 22px;background:rgba(38,26,50,.35)}
