@@ -35,6 +35,13 @@ const L = (p) => localizedPath(p, lang);
   </div>
 
 <style>
+:global(body){
+  background-image:linear-gradient(180deg,rgba(13,17,20,.8),rgba(13,17,20,.88)),url('/hero-bg.jpg');
+  background-size:cover,cover;
+  background-position:center,center;
+  background-repeat:no-repeat,no-repeat;
+  background-attachment:fixed,fixed;
+}
 .grp{margin-bottom:40px}
 .grp-head{font-family:'Chakra Petch';text-transform:uppercase;letter-spacing:.14em;font-weight:700;font-size:18px;color:var(--cream);border-left:3px solid var(--gold);padding-left:12px;margin-bottom:18px}
 .roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
