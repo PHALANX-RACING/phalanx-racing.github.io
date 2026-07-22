@@ -133,23 +133,23 @@ const postSlug = (id) => id.replace(/^(tr|en)\//, '');
   box-shadow:0 0 22px rgba(188,131,41,.4);
   background-color:#150f08;
   background-image:
-    linear-gradient(rgba(8,6,3,.6),rgba(8,6,3,.6)),
-    repeating-linear-gradient(48deg,#D8A93E 0 14px,#17110a 14px 28px);
-  background-size:100% 100%,40px 40px;
-  background-repeat:no-repeat,repeat;
-  background-position:0 0,0 0;
-  animation:flowchevron 3s linear infinite;
+    linear-gradient(rgba(8,6,3,.4),rgba(8,6,3,.4)),
+    linear-gradient(135deg,#D8A93E 25%,transparent 25%),
+    linear-gradient(225deg,#D8A93E 25%,transparent 25%),
+    linear-gradient(45deg,#D8A93E 25%,transparent 25%),
+    linear-gradient(315deg,#D8A93E 25%,transparent 25%);
+  background-position:0 0,22px 0,22px 0,0 0,0 0;
+  background-size:100% 100%,44px 44px,44px 44px,44px 44px,44px 44px;
+  background-repeat:no-repeat,repeat,repeat,repeat,repeat;
+  animation:flowchevron 3.4s linear infinite;
 }
 .btn.flow:hover{
   border-color:var(--yellow);box-shadow:0 0 28px rgba(188,131,41,.6);color:var(--yellow);
-  background-color:#150f08;
-  background-image:
-    linear-gradient(rgba(8,6,3,.45),rgba(8,6,3,.45)),
-    repeating-linear-gradient(48deg,#F0ED72 0 14px,#17110a 14px 28px);
-  background-size:100% 100%,40px 40px;
-  background-repeat:no-repeat,repeat;
 }
-@keyframes flowchevron{from{background-position:0 0,0 0}to{background-position:0 0,40px 0}}
+@keyframes flowchevron{
+  from{background-position:0 0,22px 0,22px 0,0 0,0 0}
+  to{background-position:0 0,66px 0,66px 0,44px 0,44px 0}
+}
 @media(prefers-reduced-motion:reduce){.btn.flow{animation:none}}
 
 .news-side{position:relative;z-index:2;flex:0 0 260px;padding:0;display:flex;flex-direction:column;gap:30px}
