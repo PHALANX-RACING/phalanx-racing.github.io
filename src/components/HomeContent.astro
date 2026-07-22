@@ -1,10 +1,18 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import { ui, localizedPath } from '../i18n.js';
+import { ui, localizedPath, formatDate } from '../i18n.js';
 const { lang = 'tr' } = Astro.props;
 const t = ui[lang];
 const h = t.home;
 const L = (p) => localizedPath(p, lang);
+
+// Latest 3 build-log posts in this language, for the home page sidebar.
+const recentPosts = (await getCollection('buildlog'))
+  .filter((p) => p.id.startsWith(`${lang}/`))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+const postSlug = (id) => id.replace(/^(tr|en)\//, '');
 ---
 <Base title={h.title} desc={h.desc} lang={lang}>
 
@@ -20,6 +28,30 @@ const L = (p) => localizedPath(p, lang);
       </div>
     </div>
   </header>
+
+  <aside class="news-side">
+    <div class="news-blk">
+      <div class="news-h">{h.sideRecent}</div>
+      {recentPosts.map((p) => (
+        <a class="news-item" href={L(`/build-log/${postSlug(p.id)}/`)}>
+          <div class="news-date">{formatDate(p.data.date, lang)}</div>
+          <div class="news-t">{p.data.title}</div>
+          {p.data.summary && <p class="news-s">{p.data.summary}</p>}
+        </a>
+      ))}
+      <a class="news-all" href={L('/build-log')}>{h.sideAllLog}</a>
+    </div>
+    <div class="news-blk">
+      <div class="news-h">{h.sideUpcoming}</div>
+      {h.upcoming.map((u) => (
+        <div class="news-item">
+          <div class="news-date">{u.date}</div>
+          <div class="news-t">{u.title}</div>
+          <p class="news-s">{u.place}</p>
+        </div>
+      ))}
+    </div>
+  </aside>
 
   <div class="stats"><div class="wrap stats-in">
     {h.stats.map((s) => (
@@ -97,6 +129,21 @@ const L = (p) => localizedPath(p, lang);
 .hero .sub{font-family:'Chakra Petch';font-size:clamp(15px,2.2vw,20px);color:var(--cream);letter-spacing:.04em}
 .hero .tag{color:var(--muted);max-width:540px;margin:16px auto 30px;font-size:16px}
 .hero .cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+
+.news-side{position:relative;z-index:3;padding:0 22px 40px;display:flex;flex-direction:column;gap:30px}
+.news-blk{display:flex;flex-direction:column;gap:16px}
+.news-h{font-family:'Chakra Petch';text-transform:uppercase;letter-spacing:.16em;font-weight:700;font-size:13px;color:var(--gold)}
+.news-item{display:block;color:inherit;text-decoration:none}
+.news-date{font-family:'Chakra Petch';font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.news-t{font-size:15px;font-weight:600;color:var(--cream);margin-top:2px;transition:color .2s}
+a.news-item:hover .news-t{color:var(--yellow)}
+.news-s{font-size:13px;color:var(--muted);margin-top:3px}
+.news-all{align-self:flex-start;font-family:'Chakra Petch';font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);text-decoration:none}
+.news-all:hover{color:var(--yellow)}
+
+@media(min-width:1440px){
+  .news-side{position:fixed;top:104px;right:28px;width:250px;max-height:calc(100vh - 130px);overflow-y:auto;padding:0}
+}
 
 .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .stats-in{display:grid;grid-template-columns:repeat(4,1fr)}

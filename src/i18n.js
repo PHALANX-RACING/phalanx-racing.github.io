@@ -80,6 +80,12 @@ export const ui = {
       contactText: 'Sorularınız, iş birliği önerileri veya bize ulaşmak için yazın. Kısa bir mesajınız bile bizim için değerli.',
       uni: 'İstanbul Sağlık ve Teknoloji Üniversitesi · İstanbul',
       contactBtn: 'Mail Gönder',
+      sideRecent: 'Son Güncellemeler',
+      sideUpcoming: 'Yaklaşan',
+      sideAllLog: 'Tüm build-log →',
+      upcoming: [
+        { date: '26.07.2026 — Pazar, 14:00', title: 'Ekip toplantısı', place: 'İTÜ Elektrik-Elektronik Fakültesi' },
+      ],
     },
 
     teamPage: {
@@ -157,6 +163,12 @@ export const ui = {
       contactText: 'Write to us with questions, collaboration ideas, or just to say hello. Even a short message means a lot to us.',
       uni: 'Istanbul Health and Technology University · Istanbul',
       contactBtn: 'Send Email',
+      sideRecent: 'Latest Updates',
+      sideUpcoming: 'Upcoming',
+      sideAllLog: 'Full build-log →',
+      upcoming: [
+        { date: 'Jul 26, 2026 — Sunday, 2:00 PM', title: 'Team meeting', place: 'ITU Faculty of Electrical-Electronics Engineering' },
+      ],
     },
 
     teamPage: {
